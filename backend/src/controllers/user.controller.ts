@@ -7,14 +7,8 @@ import { AuthRequest } from "../utils/interface";
 
 
 export const getAllUsers = async (req: AuthRequest, res: Response, next: NextFunction) => {
-  console.log("caling users is ==>");
   
   try {
-    const userId = req.user?.id;
-    if (!userId) {
-      return res.status(HttpStatusCode.UNAUTHORIZED).json({ message: USER_MESSAGES.UNAUTHORIZED });
-    }
-
     const users = await User.find();
     return res.status(HttpStatusCode.OK).json({ users });
   } catch (error) {

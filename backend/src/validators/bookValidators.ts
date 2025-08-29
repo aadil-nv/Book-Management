@@ -5,9 +5,6 @@ export const createBookValidator = [
     .notEmpty().withMessage('Title is required')
     .isString().withMessage('Title must be a string'),
   
-  body('author')
-    .notEmpty().withMessage('Author is required')
-    .isString().withMessage('Author must be a string'),
   
   body('publishedYear')
     .optional()

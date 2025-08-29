@@ -13,6 +13,12 @@ export const createBook = async (req: AuthRequest, res: Response) => {
       return res.status(HttpStatusCode.UNAUTHORIZED).json({ message: 'User not authorized' });
     }
 
+    // Check if a book with the same title already exists (case-insensitive)
+    const existingBook = await Book.findOne({ title: { $regex: `^${title}$`, $options: 'i' } });
+    if (existingBook) {
+      return res.status(HttpStatusCode.BAD_REQUEST).json({ message: 'Book with this title already exists' });
+    }
+
     const book = new Book({
       title,
       author: new mongoose.Types.ObjectId(authorId),
@@ -30,19 +36,24 @@ export const createBook = async (req: AuthRequest, res: Response) => {
   }
 };
 
+
 export const getAllBooks = async (req: Request, res: Response) => {
   try {
     const { genre, minYear, available, limit = '10', offset = '0' } = req.query;
-    console.log("req.query====>",req.query);
-    
 
     const filter: FilterQuery<IBook> = {};
+
     if (genre) filter.genre = String(genre);
     if (minYear) filter.publishedYear = { $gte: Number(minYear) };
-    if (available === 'true') filter.stock = { $gt: 0 };
+
+    if (available === 'true') {
+      filter.stock = { $gt: 0 }; // only available books
+    } else if (available === 'false') {
+      filter.stock = { $eq: 0 }; // only out-of-stock books
+    }
 
     const books = await Book.find(filter)
-      .populate('author', 'username email') 
+      .populate('author', 'username email') // populate author details
       .skip(Number(offset))
       .limit(Number(limit));
 
@@ -51,6 +62,7 @@ export const getAllBooks = async (req: Request, res: Response) => {
     res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({ message: 'Server error', error: err });
   }
 };
+
 
 export const checkoutBook = async (req: AuthRequest, res: Response) => {
   try {
