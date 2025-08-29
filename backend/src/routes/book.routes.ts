@@ -6,7 +6,7 @@ import { validateRequest } from '../middlewares/validateRequest';
 
 export const bookRouter = express.Router();
 
-bookRouter.post('/books', authMiddleware,createBookValidator,validateRequest, createBook);
-bookRouter.get('/books',getBooksValidator,validateRequest, getAllBooks);
-bookRouter.post('/books/:id/checkout', authMiddleware,checkoutBookValidator,validateRequest, checkoutBook);
+bookRouter.post('/', authMiddleware,createBookValidator,validateRequest, createBook);
+bookRouter.get('/',getBooksValidator,validateRequest, getAllBooks);
+bookRouter.post('/:id/checkout', authMiddleware,checkoutBookValidator,validateRequest, checkoutBook);
 
