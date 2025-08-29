@@ -46,13 +46,13 @@ export const getAllBooks = async (req: Request, res: Response) => {
     if (minYear) filter.publishedYear = { $gte: Number(minYear) };
 
     if (available === 'true') {
-      filter.stock = { $gt: 0 }; // only available books
+      filter.stock = { $gt: 0 };
     } else if (available === 'false') {
-      filter.stock = { $eq: 0 }; // only out-of-stock books
+      filter.stock = { $eq: 0 }; 
     }
 
     const books = await Book.find(filter)
-      .populate('author', 'username email') // populate author details
+      .populate('author', 'username email')
       .skip(Number(offset))
       .limit(Number(limit));
 
