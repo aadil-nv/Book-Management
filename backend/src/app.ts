@@ -9,6 +9,7 @@ import corsOptions from "./config/corsOptions";
 import { errorHandler } from "./middlewares/errorHandler";
 import { authRouter } from "./routes/auth.routes";
 import { userRouter } from "./routes/user.routes";
+import { bookRouter } from "./routes/book.routes";
 import { connectDB } from "./config/connectDB";
 
 connectDB();
@@ -22,6 +23,7 @@ app.use(logger);
 
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
+app.use("/api/books",bookRouter );
 
 
 app.use(errorHandler);

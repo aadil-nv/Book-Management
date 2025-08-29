@@ -1,6 +1,17 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Types } from 'mongoose';
 
-const userSchema = new mongoose.Schema({
+// --- TypeScript interface for User ---
+export interface IUser extends Document {
+  username: string;
+  email: string;
+  password: string;
+  borrowedBooks: Types.ObjectId[]; // Array of Book IDs
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// --- Mongoose Schema ---
+const userSchema = new mongoose.Schema<IUser>({
   username: {
     type: String,
     required: true,
@@ -20,9 +31,9 @@ const userSchema = new mongoose.Schema({
   },
   borrowedBooks: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Book', // relation to Book collection
-  }]
+    ref: 'Book',
+  }],
 }, { timestamps: true });
 
-export const User = mongoose.model('User', userSchema);
-
+// --- Model ---
+export const User = mongoose.model<IUser>('User', userSchema);

@@ -13,6 +13,9 @@ interface AuthRequest extends Request {
 
 export const authMiddleware = (req: AuthRequest, res: Response, next: NextFunction) => {
   const token = req.cookies.accessToken;
+
+  console.log("token from middleware ====>",token);
+  
   
   if (!token) {
     
