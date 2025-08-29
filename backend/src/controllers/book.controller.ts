@@ -3,6 +3,7 @@ import mongoose, { FilterQuery } from 'mongoose';
 import { Book, IBook } from '../models/book.scheema';
 import { AuthRequest } from '../utils/interface';
 import { HttpStatusCode } from '../constants/enums';
+import { MESSAGES } from '../constants/constants';
 
 export const createBook = async (req: AuthRequest, res: Response) => {
   try {
@@ -10,12 +11,12 @@ export const createBook = async (req: AuthRequest, res: Response) => {
     const authorId = req.user?.id; 
 
     if (!authorId) {
-      return res.status(HttpStatusCode.UNAUTHORIZED).json({ message: 'User not authorized' });
+      return res.status(HttpStatusCode.UNAUTHORIZED).json({ message: MESSAGES.UNAUTHORIZED });
     }
 
     const existingBook = await Book.findOne({ title: { $regex: `^${title}$`, $options: 'i' } });
     if (existingBook) {
-      return res.status(HttpStatusCode.BAD_REQUEST).json({ message: 'Book with this title already exists' });
+      return res.status(HttpStatusCode.BAD_REQUEST).json({ message: MESSAGES.BOOK_ALREADY_EXISTS_WITH_THIS_TITLE });
     }
 
     const book = new Book({
@@ -31,7 +32,7 @@ export const createBook = async (req: AuthRequest, res: Response) => {
 
     res.status(HttpStatusCode.CREATED).json(book);
   } catch (err) {
-    res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({ message: 'Server error', error: err });
+    res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({ message: MESSAGES.SERVER_ERROR, error: err });
   }
 };
 
@@ -58,7 +59,7 @@ export const getAllBooks = async (req: Request, res: Response) => {
 
     res.status(HttpStatusCode.OK).json(books);
   } catch (err) {
-    res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({ message: 'Server error', error: err });
+    res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({ message: MESSAGES.SERVER_ERROR, error: err });
   }
 };
 
@@ -69,9 +70,9 @@ export const checkoutBook = async (req: AuthRequest, res: Response) => {
     const userId = req.user?.id;
 
     const book = await Book.findById(bookId);
-    if (!book) return res.status(HttpStatusCode.NOT_FOUND).json({ message: 'Book not found' });
+    if (!book) return res.status(HttpStatusCode.NOT_FOUND).json({ message: MESSAGES.BOOK_NOT_FOUND });
 
-    if (book.stock <= 0) return res.status(HttpStatusCode.BAD_REQUEST).json({ message: 'Book out of stock' });
+    if (book.stock <= 0) return res.status(HttpStatusCode.BAD_REQUEST).json({ message: MESSAGES.BOOK_OUT_OF_STOCK });
 
     book.stock -= 1;
 
@@ -84,6 +85,6 @@ export const checkoutBook = async (req: AuthRequest, res: Response) => {
 
     res.status(HttpStatusCode.OK).json(book);
   } catch (err) {
-    res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({ message: 'Server error', error: err });
+    res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({ message: MESSAGES.SERVER_ERROR, error: err });
   }
 };

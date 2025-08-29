@@ -7,22 +7,14 @@ export const MESSAGES = {
     UNAUTHORIZED: "Unauthorized access.",
     SERVER_ERROR: "Internal Server Error.",
     USER_ALREADY_EXISTS: "User already exists.",
-    CUSTOMER_ALREADY_EXISTS: "Customer already exists",
-    CUSTOMER_CREATED: "Customer created successfully.",
-    CUSTOMER_NOT_FOUND: "Customer not found.",
-    CUSTOMER_DELETED: "Customer deleted successfully.",
-    CUSTOMER_UPDATED: "Customer updated successfully.",
-    PRODUCT_CREATED: "Product created successfully.",
-    PRODUCT_ALREADY_EXISTS: "Product already exists.",
-    PRODUCT_NOT_FOUND: "Product not found.",
-    PRODUCT_DELETED: "Product deleted successfully.",
-    PRODUCT_UPDATED: "Product updated successfully.",
-    SALE_UPDATED: "Sale updated successfully.",
-    SALE_NOT_FOUND: "Sale not found.",
-    SALE_DELETED : "Sale deleted successfully.",
-    SALE_CREATED : "Sale created successfully.",
-    INSUFFICIENT_STOCK : "Insufficient stock available.",
-    MOBILE_NUMBER_ALREADY_EXISTS : "Mobile number already exists."
+    BOOK_OUT_OF_STOCK: "Book out of stock.",
+    BOOK_NOT_FOUND: "Book not found.",
+    BOOK_ALREADY_EXISTS: "Book already exists.",
+    BOOK_CREATED: "Book created successfully.",
+    BOOK_UPDATED: "Book updated successfully.",
+    BOOK_DELETED: "Book deleted successfully.",
+    BOOK_ALREADY_EXISTS_WITH_THIS_TITLE: "Book already exists with this title.",
+   
   };
   
   
