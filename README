@@ -1,41 +1,82 @@
-📚 Book Management API
+# 📚 Book Management API
 
-A RESTful API for managing books and users. Users can create books, view all books with filters, and checkout books. Built with Node.js, Express, MongoDB, and TypeScript.
+A simple **Book Management API** built with **Node.js, Express, TypeScript**, and structured using **MVC architecture**.  
+This project provides RESTful APIs for managing books with clean code separation and TypeScript support.
 
-Features
+---
 
-User Management
+## 🚀 Features
+- Built with **TypeScript** for type safety and maintainability.  
+- **MVC architecture** for clean code structure.  
+- CRUD operations for managing books.  
+- Centralized error handling and validation.  
+- Environment variable configuration with `.env`.  
+- Postman collection available for testing APIs.  
 
-Register and login users (JWT authentication)
+---
 
-Track borrowed books
+## ⚙️ Tech Stack
+- **Backend**: Node.js, Express.js, TypeScript  
+- **Database**: MongoDB (Mongoose)  
+- **Architecture**: MVC (Model-View-Controller)  
 
-Book Management
+---
 
-Create books (author automatically assigned from logged-in user)
+## 📂 Project Structure
+├── src
+│ ├── config # Database and environment configuration
+│ ├── constants # App-wide constants (messages, status codes)
+│ ├── controllers # Handle request/response
+│ ├── middlewares # Middlewares (error handling, auth, etc.)
+│ ├── models # MongoDB models (Book schema ,user scheema)
+│ ├── routes # API routes (BookRoutes ,UserRoutes , AuthRoutes)
+│ ├── validators # express validator request validation
+│ ├── logs # API logs (morgan)
+│ ├── utils # Helper functions
+│ ├── app.ts # all configuration files functions
+│ └── index.ts # Entry point
+├── .env # Environment variables
+├── package.json
+├── tsconfig.json
+└── README.md
 
-Get all books with filters (genre, available stock, published year)
 
-Checkout books (updates stock and user borrowed list)
 
-Author info populated in responses
+## 🔑 Environment Variables
+Create a `.env` file in the root directory and add the following:
 
-Validations
+PORT ="7000"
+CLIENT_URL="http://localhost:5173"
+MONGODB_URL="mongodb+srv://adil:Adil%40953947@cluster0.lfvmsb8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+REFRESH_TOKEN_SECRET="Adil@123"
+ACCESS_TOKEN_SECRET="Adil@123"
 
-Required fields validation
+LOG_INTERVAL="7d"
+NODE_ENV="production"
 
-Stock must be positive integer
 
-Prevent duplicate book titles (case-insensitive)
 
-Tech Stack
+# Clone the repository
+git clone https://github.com/aadil-nv/Book-Management.git
 
-Node.js
+# Move into the project folder
+cd Book-Management
 
-Express.js
+# Install dependencies
+npm install
 
-MongoDB & Mongoose
+# Run in development mode
+npm run dev
 
-TypeScript
+# Build for production
+npm run build
 
-JWT for authentication
+# Start production server
+npm start
+
+
+
+Postman API :https://.postman.co/workspace/My-Workspace~7ef52dee-151c-489c-8239-ccb05942b098/request/33129423-9d7c1fa6-5bde-490a-91ae-38b025c1440e?action=share&creator=33129423&ctx=documentation
+
+
+GitHub:https://github.com/aadil-nv/Book-Management
