@@ -1,16 +1,14 @@
 import mongoose, { Document, Types } from 'mongoose';
 
-// --- TypeScript interface for User ---
 export interface IUser extends Document {
   username: string;
   email: string;
   password: string;
-  borrowedBooks: Types.ObjectId[]; // Array of Book IDs
+  borrowedBooks: Types.ObjectId[]; 
   createdAt: Date;
   updatedAt: Date;
 }
 
-// --- Mongoose Schema ---
 const userSchema = new mongoose.Schema<IUser>({
   username: {
     type: String,

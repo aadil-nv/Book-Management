@@ -2,7 +2,7 @@ import mongoose, { Document, Types } from 'mongoose';
 
 export interface IBook extends Document {
   title: string;
-  author: Types.ObjectId; // Reference to User
+  author: Types.ObjectId; 
   publishedYear?: number;
   genre?: string;
   stock: number;
