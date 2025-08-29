@@ -6,12 +6,14 @@ This project provides RESTful APIs for managing books with clean code separation
 ---
 
 ## 🚀 Features
-- Built with **TypeScript** for type safety and maintainability.  
-- **MVC architecture** for clean code structure.  
-- CRUD operations for managing books.  
-- Centralized error handling and validation.  
-- Environment variable configuration with `.env`.  
-- Postman collection available for testing APIs.  
+- ✅ Create, Read, Update, Delete (CRUD) operations for books  
+- ✅ MVC architecture for scalability  
+- ✅ Request validation using `validators`  
+- ✅ API logging with `morgan` stored in `logs`  
+- ✅ Centralized error handling with middlewares  
+- ✅ Constants for status codes/messages  
+- ✅ Environment variables support  
+- ✅ Postman API collection included   
 
 ---
 
