@@ -1,0 +1,41 @@
+📚 Book Management API
+
+A RESTful API for managing books and users. Users can create books, view all books with filters, and checkout books. Built with Node.js, Express, MongoDB, and TypeScript.
+
+Features
+
+User Management
+
+Register and login users (JWT authentication)
+
+Track borrowed books
+
+Book Management
+
+Create books (author automatically assigned from logged-in user)
+
+Get all books with filters (genre, available stock, published year)
+
+Checkout books (updates stock and user borrowed list)
+
+Author info populated in responses
+
+Validations
+
+Required fields validation
+
+Stock must be positive integer
+
+Prevent duplicate book titles (case-insensitive)
+
+Tech Stack
+
+Node.js
+
+Express.js
+
+MongoDB & Mongoose
+
+TypeScript
+
+JWT for authentication
