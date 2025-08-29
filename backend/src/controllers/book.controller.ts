@@ -13,7 +13,6 @@ export const createBook = async (req: AuthRequest, res: Response) => {
       return res.status(HttpStatusCode.UNAUTHORIZED).json({ message: 'User not authorized' });
     }
 
-    // Check if a book with the same title already exists (case-insensitive)
     const existingBook = await Book.findOne({ title: { $regex: `^${title}$`, $options: 'i' } });
     if (existingBook) {
       return res.status(HttpStatusCode.BAD_REQUEST).json({ message: 'Book with this title already exists' });
